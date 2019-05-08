@@ -1,0 +1,23 @@
+function decrement() {
+  var numElement = document.getElementById('number');
+  var liveRegion = document.getElementById('countdown');
+
+  var newNumber = parseInt(numElement.textContent - 1);
+
+  if (newNumber > -1) {
+    numElement.textContent = newNumber;
+  }
+
+  if (newNumber < 0) {
+    liveRegion.setAttribute('aria-live', 'assertive');
+    liveRegion.setAttribute('role', 'alert');
+    setTimeout(function() {
+      liveRegion.removeAttribute('aria-live');
+      liveRegion.setAttribute('role', 'timer');
+    }, 999);
+  }
+}
+
+window.setInterval(function() {
+  decrement();
+}, 1000);
